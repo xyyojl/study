@@ -8,16 +8,11 @@ let $liImages = $slides.children('li')
 let current = 0;
 console.log($liImages.length)
 let distance = 920
-let node;
-makeFakeSlides()
-// $slides.css({transform:'translateX('+ (-distance) +'px)'})
-bindEvents()
 
-/* setInterval(function(){
-    // bindEvents()
-    goToSlide(current+1,$liButtons[current+1])
-    // console.log('current',current)
-},2000) */
+makeFakeSlides()
+bindEvents()
+$($liButtons[0]).addClass('active')
+
 
 let timer = setInterval(function(){
     goToSlide(current+1)
@@ -73,5 +68,10 @@ function goToSlide(index,node){
 
     }
     current = index
-    node.addClass('active').siblings().removeClass('active')
+    if(node){
+        node.addClass('active').siblings().removeClass('active')
+    }else{
+        // console.log($liButtons[index])
+        $($liButtons[index]).addClass('active').siblings().removeClass('active')
+    }
 }
