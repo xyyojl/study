@@ -24,6 +24,15 @@ $('main').on('mouseenter',function(){
         goToSlide(current+1)
     },2000)
 })
+document.addEventListener('visibilitychange',function(e){
+    if(document.hidden){
+        window.clearInterval(timer)
+    }else{
+        timer = setInterval(function(){
+            goToSlide(current+1)
+        },2000)
+    }
+})
 
 
 function makeFakeSlides(){
@@ -75,3 +84,5 @@ function goToSlide(index,node){
         $($liButtons[index]).addClass('active').siblings().removeClass('active')
     }
 }
+
+
