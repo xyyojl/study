@@ -98,6 +98,13 @@ Google 「维基百科 端口」
 
 ## 一个简易 Server
 
+### 接收请求
+
+1. 进入一个安全目录，然后创建一个目录`cd ~/Desktop; mkdir node-demo; cd node-demo`
+2. `touch server.js`，然后编辑server.js
+
+### 发出响应
+
 
 
 
