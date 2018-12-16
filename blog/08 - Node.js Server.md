@@ -101,13 +101,42 @@ Google 「维基百科 端口」
 ### 接收请求
 
 1. 进入一个安全目录，然后创建一个目录`cd ~/Desktop; mkdir node-demo; cd node-demo`
-2. `touch server.js`，然后编辑server.js
+2. `touch server.js`，然后编辑server.js，[server.js的内容](https://github.com/FrankFang/nodejs-test/blob/master/server.js)
+3. 运行node server.js或者node server.js，如看到报错，请根据报错提示调整命令
+4. 成功之后，这个server会保持运行，无法退出
+   1. 如果你想「中断」这个 server，按  <kb>Ctrl</kbd>  + <kbd>C</kbd> 即可（C 就是 Cancel 的意思）
+   2. 中断后你才能输入其他命令
+5. 要发起一个请求到这个服务器，打开新的Bash窗口运行`curl http://localhost:你的指定的端口/xxx`
+6. server 打印出了路径，说明server收到了我们用 curl 发出的请求，但是server没有发出响应，所以 curl 就一直等在那里，无法退出（用 <kb>Ctrl</kbd> + <kbd>C</kbd> 中断这个傻 curl）
 
 ### 发出响应
 
+1. 编辑server.js
+2. 在中间的标注的区域添加两行代码
 
+```repsonse.write('Hi')
+repsonse.write('Hi')
+repsonse.end()
+```
 
+3. 终端之前的server，重新运行node server 8888
+4. `curl http://127.0.0.1:8888/xxx`，结果如下：` Hi%`。这个 % 不是我们的内容，% 表示结尾。
+5. 使用 `curl -s -v -- "http://localhost:8888/xxx"` 可以查看完整的请求和响应
 
+server根据请求返回不同的响应
+
+1. 响应 /
+2. 响应 /xxx
+3. 响应 404
+4. 响应 /xxx.html
+5. 响应 /xxx.css
+6. 响应 /xxx.js
+
+注：
+
+HTTP 路径不是文件路径！！！/xxx.html 不一定对应 xxx.html 文件
+
+后缀是废话。文件内容是有 HTTP 头中的 Content-Type 保证的
 
 ## 总结
 
